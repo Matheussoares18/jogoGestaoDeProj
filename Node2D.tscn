@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://assets/player/idle/idle-3.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/idle/idle-1.png" type="Texture" id=2]
@@ -21,9 +21,15 @@
 [ext_resource path="res://assets/player/run/run-6.png" type="Texture" id=19]
 [ext_resource path="res://assets/player/idle/idle-12.png" type="Texture" id=20]
 [ext_resource path="res://KinematicBody2D.gd" type="Script" id=21]
-[ext_resource path="res://mainFloor.tres" type="TileSet" id=22]
+[ext_resource path="res://grama.tres" type="TileSet" id=22]
+[ext_resource path="res://assets/player/jump/jump.png" type="Texture" id=23]
+[ext_resource path="res://assets/back.jpg" type="Texture" id=24]
+[ext_resource path="res://Monstro.tscn" type="PackedScene" id=25]
+[ext_resource path="res://assets/tiles/ARVORE.png" type="Texture" id=26]
+[ext_resource path="res://Portal.gd" type="Script" id=27]
+[ext_resource path="res://assets/tiles/portaall.png" type="Texture" id=28]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 20 ) ],
 "loop": true,
@@ -33,34 +39,155 @@ animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 7 ), ExtResource( 18 ), ExtResource( 13 ), ExtResource( 15 ), ExtResource( 19 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": true,
 "name": "run",
-"speed": 15.0
+"speed": 13.0
+}, {
+"frames": [ ExtResource( 23 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 26.8338, 43.5558 )
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 24.8867
+height = 46.4526
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 14.8668, 6.37442 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 442.103, 264.691 )
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 21.2421
+
+[node name="World Fase 1" type="Node2D"]
+
+[node name="player" type="KinematicBody2D" parent="."]
+position = Vector2( 350.345, 343.636 )
 script = ExtResource( 21 )
-__meta__ = {
-"_edit_group_": true
-}
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
-position = Vector2( -0.293091, -0.0758057 )
+[node name="AnimatedSprite" type="AnimatedSprite" parent="player"]
+position = Vector2( -3.08298, 33.3681 )
 scale = Vector2( 3.03575, 2.62218 )
-frames = SubResource( 2 )
-animation = "idle"
+frames = SubResource( 1 )
+animation = "jump"
+playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
-position = Vector2( 0.471954, 1.41583 )
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
+position = Vector2( -1.96884, 32.0588 )
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2( 1, -1 )
+current = true
+limit_top = -10000
+limit_bottom = 600
+smoothing_enabled = true
+
+[node name="pés" type="Area2D" parent="player"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="shape" type="CollisionShape2D" parent="player/pés"]
+position = Vector2( -2.15604, 76.3916 )
+shape = SubResource( 5 )
 
 [node name="TileMap" type="TileMap" parent="."]
+position = Vector2( 0, 112.866 )
 tile_set = ExtResource( 22 )
-cell_size = Vector2( 50, 38 )
-cell_custom_transform = Transform2D( 10, 0, 0, 10, 0, 0 )
+cell_size = Vector2( 48, 37 )
 format = 1
-tile_data = PoolIntArray( 589831, 0, 0, 589832, 0, 0, 589833, 0, 0, 589834, 0, 0, 589835, 0, 0, 589836, 0, 0, 589837, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0 )
+tile_data = PoolIntArray( -1900529, 3, 0, -1900528, 3, 0, -1900527, 3, 0, -1900526, 3, 0, -1900525, 3, 0, -1900524, 3, 0, -1900523, 3, 0, -1900522, 3, 0, -1900521, 3, 0, -1900520, 3, 0, -1900519, 3, 0, -1900518, 3, 0, -1900517, 3, 0, -1900516, 3, 0, -1900515, 3, 0, -1900514, 3, 0, -1900513, 3, 0, -1900512, 3, 0, -1900511, 3, 0, -1900510, 3, 0, -1900509, 3, 0, -1900508, 3, 0, -1900507, 3, 0, -1900506, 3, 0, -1900505, 3, 0, -1900504, 3, 0, -1900503, 3, 0, -1900502, 3, 0, -1834993, 3, 0, -1834992, 3, 0, -1834991, 3, 0, -1834990, 3, 0, -1834989, 3, 0, -1834988, 3, 0, -1834987, 3, 0, -1834986, 3, 0, -1834985, 3, 0, -1834984, 3, 0, -1834983, 3, 0, -1834982, 3, 0, -1834981, 3, 0, -1834980, 3, 0, -1834979, 3, 0, -1834978, 3, 0, -1834977, 3, 0, -1834976, 3, 0, -1834975, 3, 0, -1834974, 3, 0, -1834973, 3, 0, -1834972, 3, 0, -1834971, 3, 0, -1834970, 3, 0, -1834969, 3, 0, -1834968, 3, 0, -1834967, 3, 0, -1834966, 3, 0, -1769457, 3, 0, -1769456, 3, 0, -1769455, 3, 0, -1769454, 3, 0, -1769453, 3, 0, -1769452, 3, 0, -1769451, 3, 0, -1769450, 3, 0, -1769449, 3, 0, -1769448, 3, 0, -1769447, 3, 0, -1769446, 3, 0, -1769445, 3, 0, -1769444, 3, 0, -1769443, 3, 0, -1769442, 3, 0, -1769441, 3, 0, -1769440, 3, 0, -1769439, 3, 0, -1769438, 3, 0, -1769437, 3, 0, -1769436, 3, 0, -1769435, 3, 0, -1769434, 3, 0, -1769433, 3, 0, -1769432, 3, 0, -1769431, 3, 0, -1769430, 3, 0, -1703921, 3, 0, -1703920, 3, 0, -1703919, 3, 0, -1703918, 3, 0, -1703917, 3, 0, -1703916, 3, 0, -1703915, 3, 0, -1703910, 3, 0, -1703909, 3, 0, -1703908, 3, 0, -1703907, 3, 0, -1703902, 3, 0, -1703901, 3, 0, -1703900, 3, 0, -1703899, 3, 0, -1703898, 3, 0, -1703897, 3, 0, -1703896, 3, 0, -1703895, 3, 0, -1703894, 3, 0, -1638385, 3, 0, -1638384, 3, 0, -1638383, 3, 0, -1638382, 3, 0, -1638381, 3, 0, -1638380, 3, 0, -1638379, 3, 0, -1638374, 3, 0, -1638373, 3, 0, -1638372, 3, 0, -1638371, 3, 0, -1638366, 3, 0, -1638365, 3, 0, -1638364, 3, 0, -1638363, 3, 0, -1638362, 3, 0, -1638361, 3, 0, -1638360, 3, 0, -1638359, 3, 0, -1638358, 3, 0, -1572849, 3, 0, -1572848, 3, 0, -1572847, 3, 0, -1572846, 3, 0, -1572845, 3, 0, -1572844, 3, 0, -1572843, 3, 0, -1572838, 3, 0, -1572837, 3, 0, -1572836, 3, 0, -1572835, 3, 0, -1572830, 3, 0, -1572829, 3, 0, -1572828, 3, 0, -1572827, 3, 0, -1572822, 3, 0, -1507312, 3, 0, -1507311, 3, 0, -1507310, 3, 0, -1507309, 3, 0, -1507308, 3, 0, -1507307, 3, 0, -1507302, 3, 0, -1507301, 3, 0, -1507300, 3, 0, -1507299, 3, 0, -1507294, 3, 0, -1507293, 3, 0, -1507292, 3, 0, -1507291, 3, 0, -1507286, 3, 0, -1441750, 3, 0, -1376214, 3, 0, -1310678, 3, 0, -1245169, 3, 0, -1245168, 3, 0, -1245167, 3, 0, -1245166, 3, 0, -1245165, 3, 0, -1245164, 3, 0, -1245163, 3, 0, -1245162, 3, 0, -1245161, 3, 0, -1245160, 3, 0, -1245159, 3, 0, -1245158, 3, 0, -1245157, 3, 0, -1245156, 3, 0, -1245155, 3, 0, -1245154, 3, 0, -1245153, 3, 0, -1245152, 3, 0, -1245151, 3, 0, -1245150, 3, 0, -1245149, 3, 0, -1245148, 3, 0, -1245147, 3, 0, -1245146, 3, 0, -1245145, 3, 0, -1245144, 3, 0, -1245143, 3, 0, -1245142, 3, 0, -1179607, 3, 0, -1114071, 3, 0, -1048566, 0, 0, -1048535, 3, 0, -982999, 3, 0, -917463, 3, 0, -851954, 2, 0, -851953, 2, 0, -851952, 2, 0, -851951, 2, 0, -851950, 2, 0, -851949, 2, 0, -851948, 2, 0, -851927, 3, 0, -786391, 3, 0, -720873, 2, 0, -720872, 2, 0, -720871, 2, 0, -720870, 2, 0, -720869, 2, 0, -720868, 2, 0, -720855, 3, 0, -655319, 3, 0, -589783, 3, 0, -524257, 3, 0, -524256, 3, 0, -524255, 3, 0, -524254, 3, 0, -524253, 3, 0, -524252, 3, 0, -524247, 3, 0, -458711, 3, 0, -393175, 3, 0, -327639, 3, 0, -262103, 3, 0, -196569, 2, 0, -196567, 3, 0, -131031, 3, 0, -65500, 3, 0, -65499, 3, 0, -65498, 3, 0, -65497, 3, 0, -65496, 3, 0, -65495, 3, 0, 65564, 3, 0, 65565, 3, 0, 65566, 3, 0, 65567, 3, 0, 65568, 3, 0, 196628, 0, 0, 196630, 0, 0, 196632, 0, 0, 327696, 0, 0, 589822, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0 )
+
+[node name="Sprite" type="Sprite" parent="TileMap"]
+position = Vector2( 42.5245, 201.659 )
+scale = Vector2( 2.03649, 2.03649 )
+texture = ExtResource( 26 )
+
+[node name="Sprite3" type="Sprite" parent="TileMap"]
+position = Vector2( 565.901, 193.761 )
+scale = Vector2( 2.03589, 2.03589 )
+texture = ExtResource( 26 )
+
+[node name="Monstro" parent="." instance=ExtResource( 25 )]
+position = Vector2( 957.01, -271.796 )
+
+[node name="Monstro2" parent="." instance=ExtResource( 25 )]
+position = Vector2( 1135.15, -603.348 )
+
+[node name="Monstro3" parent="." instance=ExtResource( 25 )]
+position = Vector2( 598.939, -1011.47 )
+
+[node name="Monstro4" parent="." instance=ExtResource( 25 )]
+position = Vector2( 1003.66, -1011.47 )
+
+[node name="Portal" type="Area2D" parent="."]
+position = Vector2( 1654.67, -722.618 )
+script = ExtResource( 27 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
+position = Vector2( 299.861, 76.2252 )
+shape = SubResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Portal/CollisionShape2D"]
+position = Vector2( 0, -12.0137 )
+scale = Vector2( 0.241529, 0.264542 )
+texture = ExtResource( 28 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2( 16, 16 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -365.109, -861.965 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2338.79, -861.965 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -365.109, -2487.46 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2338.79, -2487.46 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -3071.07, -861.649 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite6" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -3071.07, -2487.46 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite7" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -3071.07, 764.166 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -365.109, 764.166 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+
+[node name="Sprite9" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 2338.79, 764.166 )
+scale = Vector2( 5.28105, 3.17542 )
+texture = ExtResource( 24 )
+centered = false
+[connection signal="body_entered" from="player/pés" to="player" method="_on_ps_body_entered"]
+[connection signal="body_entered" from="Portal" to="Portal" method="_on_Portal_body_entered"]

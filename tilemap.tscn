@@ -1,0 +1,112 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/tiles/Barranco.png" type="Texture" id=1]
+[ext_resource path="res://assets/tiles/pedra com grama.png" type="Texture" id=2]
+[ext_resource path="res://assets/tiles/principalTile.png" type="Texture" id=3]
+[ext_resource path="res://assets/tiles/BlocoGrama.png" type="Texture" id=4]
+[ext_resource path="res://assets/tiles/barrancoright_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/tiles/ARVORE.png" type="Texture" id=6]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 42.6398, 22.6277 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 24.1699, 18.1967 )
+
+[sub_resource type="SegmentShape2D" id=3]
+a = Vector2( 32.8436, -0.299458 )
+b = Vector2( -12.2478, 46.3526 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 9.69645, 23.815 )
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileGrama" type="Node" parent="."]
+
+[node name="grama" type="Sprite" parent="TileGrama"]
+position = Vector2( -130.876, -70.3996 )
+scale = Vector2( 0.796616, 0.794586 )
+texture = ExtResource( 4 )
+centered = false
+region_rect = Rect2( 0, 0, 128, 96 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileGrama/grama"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileGrama/grama/StaticBody2D"]
+position = Vector2( 58.1544, 39.803 )
+shape = SubResource( 2 )
+
+[node name="grama2" type="Sprite" parent="TileGrama"]
+position = Vector2( -241.854, 4.24407 )
+scale = Vector2( 0.796616, 0.794586 )
+texture = ExtResource( 3 )
+centered = false
+region_rect = Rect2( 0, 0, 128, 96 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileGrama/grama2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileGrama/grama2/StaticBody2D"]
+position = Vector2( 31.0978, 33.3788 )
+shape = SubResource( 1 )
+
+[node name="grama3" type="Sprite" parent="TileGrama"]
+position = Vector2( -256, -160 )
+scale = Vector2( 0.796616, 0.794586 )
+texture = ExtResource( 2 )
+centered = false
+region_rect = Rect2( 0, 0, 128, 96 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileGrama/grama3"]
+position = Vector2( 40.2851, 31.4789 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileGrama/grama3/StaticBody2D"]
+position = Vector2( 0.525665, 2.58399 )
+shape = SubResource( 1 )
+
+[node name="grama4" type="Sprite" parent="TileGrama"]
+position = Vector2( -238.274, -63.6599 )
+scale = Vector2( 0.796616, 0.794586 )
+texture = ExtResource( 5 )
+centered = false
+region_rect = Rect2( 0, 0, 128, 96 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileGrama/grama4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileGrama/grama4/StaticBody2D"]
+position = Vector2( 26.6244, 19.9242 )
+shape = SubResource( 1 )
+
+[node name="grama6" type="Sprite" parent="TileGrama"]
+position = Vector2( -128, -128 )
+scale = Vector2( 0.796616, 0.794586 )
+texture = ExtResource( 1 )
+centered = false
+region_rect = Rect2( 0, 0, 128, 96 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileGrama/grama6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileGrama/grama6/StaticBody2D"]
+position = Vector2( 22.6092, 10.0002 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TileGrama/grama6/StaticBody2D"]
+position = Vector2( 50.7635, 32.0072 )
+rotation = 0.785398
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TileGrama/grama6/StaticBody2D"]
+position = Vector2( 64.004, 32.3338 )
+shape = SubResource( 4 )
+
+[node name="grama5" type="Sprite" parent="TileGrama"]
+position = Vector2( -476.807, -173.773 )
+scale = Vector2( 1.87592, 1.91305 )
+texture = ExtResource( 6 )
+centered = false
+offset = Vector2( -46.1302, -18.6735 )
+region_rect = Rect2( 32, 32, 32, 32 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TileGrama/grama5"]
+position = Vector2( -51.2768, 102.139 )
+scale = Vector2( 1, 1 )
