@@ -1,14 +1,15 @@
 extends KinematicBody2D
 
 const UP = Vector2(0, -1)
-const GRAVITY = 70
-const SPEED = 300
-const JUMP_HEIGHT = -1200
+const GRAVITY = 40
+var SPEED = 300 * Global.upgrades.runFaster
+var JUMP_HEIGHT = -1300 * Global.upgrades.jumpHigher
 
 var motion = Vector2()
 
 
 func _process(delta):
+	update_att()
 	
 	motion.y += GRAVITY
 	if Input.is_action_pressed("ui_right"):
@@ -34,3 +35,12 @@ func _process(delta):
 
 func _on_ps_body_entered(body):
 	body.dano()
+	
+func update_att():
+	SPEED = 300 * Global.upgrades.runFaster
+	JUMP_HEIGHT = -1300 * Global.upgrades.jumpHigher
+	
+
+
+
+
