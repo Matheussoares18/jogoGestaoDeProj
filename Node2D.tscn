@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://assets/player/idle/idle-3.png" type="Texture" id=1]
 [ext_resource path="res://assets/player/idle/idle-1.png" type="Texture" id=2]
@@ -24,22 +24,63 @@
 [ext_resource path="res://grama.tres" type="TileSet" id=22]
 [ext_resource path="res://assets/player/jump/jump.png" type="Texture" id=23]
 [ext_resource path="res://assets/back.jpg" type="Texture" id=24]
-[ext_resource path="res://Monstro.tscn" type="PackedScene" id=25]
+[ext_resource path="res://assets/grab/grab5.png" type="Texture" id=25]
 [ext_resource path="res://assets/tiles/ARVORE.png" type="Texture" id=26]
 [ext_resource path="res://Portal.gd" type="Script" id=27]
 [ext_resource path="res://assets/tiles/portaall.png" type="Texture" id=28]
 [ext_resource path="res://scenes/Coins.tscn" type="PackedScene" id=29]
 [ext_resource path="res://scenes/Shop.tscn" type="PackedScene" id=30]
+[ext_resource path="res://assets/grab/grab1.png" type="Texture" id=31]
+[ext_resource path="res://assets/grab/grab3.png" type="Texture" id=32]
+[ext_resource path="res://assets/grab/grab6.png" type="Texture" id=33]
+[ext_resource path="res://assets/grab/grab2.png" type="Texture" id=34]
+[ext_resource path="res://assets/grab/grab4.png" type="Texture" id=35]
+[ext_resource path="res://scripts/Node2D.gd" type="Script" id=36]
+[ext_resource path="res://sounds/soundtrack_Intronitiion_ilikescifi.wav" type="AudioStream" id=37]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.2421
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="Animation" id=2]
+resource_name = "camera"
+length = 9.0
+step = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("AnimationPlayer/player/Camera2D:current")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AnimationPlayer/player/Camera2D:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 2.38142, 4.85257, 6.19528, 7.90662, 8.38099 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1588.6 ), Vector2( 0, -3681.15 ), Vector2( 0, -2681.03 ), Vector2( 0, -900.03 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 17 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 16 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 20 ) ],
 "loop": true,
 "name": "idle",
 "speed": 10.0
+}, {
+"frames": [ ExtResource( 31 ), ExtResource( 34 ), ExtResource( 32 ), ExtResource( 35 ), ExtResource( 25 ), ExtResource( 33 ) ],
+"loop": true,
+"name": "grab",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 23 ) ],
 "loop": true,
@@ -52,21 +93,25 @@ animations = [ {
 "speed": 13.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=4]
 radius = 24.8867
 height = 46.4526
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 14.8668, 6.37442 )
 
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 10, 12.8276 )
+
 [node name="WorldFase1" type="Node2D"]
+script = ExtResource( 36 )
 
 [node name="TileMap" type="TileMap" parent="."]
-position = Vector2( 0, 112.866 )
+position = Vector2( 0, 111.866 )
 tile_set = ExtResource( 22 )
 cell_size = Vector2( 48, 37 )
 format = 1
-tile_data = PoolIntArray( -1900529, 3, 0, -1900528, 3, 0, -1900527, 3, 0, -1900526, 3, 0, -1900525, 3, 0, -1900524, 3, 0, -1900523, 3, 0, -1900522, 3, 0, -1900521, 3, 0, -1900520, 3, 0, -1900519, 3, 0, -1900518, 3, 0, -1900517, 3, 0, -1900516, 3, 0, -1900515, 3, 0, -1900514, 3, 0, -1900513, 3, 0, -1900512, 3, 0, -1900511, 3, 0, -1900510, 3, 0, -1900509, 3, 0, -1900508, 3, 0, -1900507, 3, 0, -1900506, 3, 0, -1900505, 3, 0, -1900504, 3, 0, -1900503, 3, 0, -1900502, 3, 0, -1834993, 3, 0, -1834992, 3, 0, -1834991, 3, 0, -1834990, 3, 0, -1834989, 3, 0, -1834988, 3, 0, -1834987, 3, 0, -1834986, 3, 0, -1834985, 3, 0, -1834984, 3, 0, -1834983, 3, 0, -1834982, 3, 0, -1834981, 3, 0, -1834980, 3, 0, -1834979, 3, 0, -1834978, 3, 0, -1834977, 3, 0, -1834976, 3, 0, -1834975, 3, 0, -1834974, 3, 0, -1834973, 3, 0, -1834972, 3, 0, -1834971, 3, 0, -1834970, 3, 0, -1834969, 3, 0, -1834968, 3, 0, -1834967, 3, 0, -1834966, 3, 0, -1769457, 3, 0, -1769456, 3, 0, -1769455, 3, 0, -1769454, 3, 0, -1769453, 3, 0, -1769452, 3, 0, -1769451, 3, 0, -1769450, 3, 0, -1769449, 3, 0, -1769448, 3, 0, -1769447, 3, 0, -1769446, 3, 0, -1769445, 3, 0, -1769444, 3, 0, -1769443, 3, 0, -1769442, 3, 0, -1769441, 3, 0, -1769440, 3, 0, -1769439, 3, 0, -1769438, 3, 0, -1769437, 3, 0, -1769436, 3, 0, -1769435, 3, 0, -1769434, 3, 0, -1769433, 3, 0, -1769432, 3, 0, -1769431, 3, 0, -1769430, 3, 0, -1703921, 3, 0, -1703920, 3, 0, -1703919, 3, 0, -1703918, 3, 0, -1703917, 3, 0, -1703916, 3, 0, -1703915, 3, 0, -1703910, 3, 0, -1703909, 3, 0, -1703908, 3, 0, -1703907, 3, 0, -1703902, 3, 0, -1703901, 3, 0, -1703900, 3, 0, -1703899, 3, 0, -1703898, 3, 0, -1703897, 3, 0, -1703896, 3, 0, -1703895, 3, 0, -1703894, 3, 0, -1638385, 3, 0, -1638384, 3, 0, -1638383, 3, 0, -1638382, 3, 0, -1638381, 3, 0, -1638380, 3, 0, -1638379, 3, 0, -1638374, 3, 0, -1638373, 3, 0, -1638372, 3, 0, -1638371, 3, 0, -1638366, 3, 0, -1638365, 3, 0, -1638364, 3, 0, -1638363, 3, 0, -1638362, 3, 0, -1638361, 3, 0, -1638360, 3, 0, -1638359, 3, 0, -1638358, 3, 0, -1572849, 3, 0, -1572848, 3, 0, -1572847, 3, 0, -1572846, 3, 0, -1572845, 3, 0, -1572844, 3, 0, -1572843, 3, 0, -1572838, 3, 0, -1572837, 3, 0, -1572836, 3, 0, -1572835, 3, 0, -1572830, 3, 0, -1572829, 3, 0, -1572828, 3, 0, -1572827, 3, 0, -1572822, 3, 0, -1507312, 3, 0, -1507311, 3, 0, -1507310, 3, 0, -1507309, 3, 0, -1507308, 3, 0, -1507307, 3, 0, -1507302, 3, 0, -1507301, 3, 0, -1507300, 3, 0, -1507299, 3, 0, -1507294, 3, 0, -1507293, 3, 0, -1507292, 3, 0, -1507291, 3, 0, -1507286, 3, 0, -1441750, 3, 0, -1376214, 3, 0, -1310678, 3, 0, -1245169, 3, 0, -1245168, 3, 0, -1245167, 3, 0, -1245166, 3, 0, -1245165, 3, 0, -1245164, 3, 0, -1245163, 3, 0, -1245162, 3, 0, -1245161, 3, 0, -1245160, 3, 0, -1245159, 3, 0, -1245158, 3, 0, -1245157, 3, 0, -1245156, 3, 0, -1245155, 3, 0, -1245154, 3, 0, -1245153, 3, 0, -1245152, 3, 0, -1245151, 3, 0, -1245150, 3, 0, -1245149, 3, 0, -1245148, 3, 0, -1245147, 3, 0, -1245146, 3, 0, -1245145, 3, 0, -1245144, 3, 0, -1245143, 3, 0, -1245142, 3, 0, -1179607, 3, 0, -1114071, 3, 0, -1048566, 0, 0, -1048535, 3, 0, -982999, 3, 0, -917463, 3, 0, -851954, 2, 0, -851953, 2, 0, -851952, 2, 0, -851951, 2, 0, -851950, 2, 0, -851949, 2, 0, -851948, 2, 0, -851927, 3, 0, -786391, 3, 0, -720873, 2, 0, -720872, 2, 0, -720871, 2, 0, -720870, 2, 0, -720869, 2, 0, -720868, 2, 0, -720855, 3, 0, -655319, 3, 0, -589783, 3, 0, -524257, 3, 0, -524256, 3, 0, -524255, 3, 0, -524254, 3, 0, -524253, 3, 0, -524252, 3, 0, -524247, 3, 0, -458711, 3, 0, -393175, 3, 0, -327639, 3, 0, -262103, 3, 0, -196569, 2, 0, -196567, 3, 0, -131031, 3, 0, -65500, 3, 0, -65499, 3, 0, -65498, 3, 0, -65497, 3, 0, -65496, 3, 0, -65495, 3, 0, 65564, 3, 0, 65565, 3, 0, 65566, 3, 0, 65567, 3, 0, 65568, 3, 0, 196628, 0, 0, 196630, 0, 0, 196632, 0, 0, 327696, 0, 0, 589822, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0 )
+tile_data = PoolIntArray( -10944524, 0, 0, -11010044, 0, 0, -10485763, 0, 0, -10223613, 0, 0, -10092553, 0, 0, -9699334, 5, 0, -9568259, 5, 0, -9240582, 5, 0, -8978440, 2, 0, -8912914, 5, 0, -8912896, 3, 0, -8912890, 2, 0, -8912885, 2, 0, -8912881, 2, 0, -8781837, 3, 0, -8454152, 0, 0, -8323068, 0, 0, -8192001, 0, 0, -7733254, 0, 0, -7405579, 0, 0, -7274512, 4, 0, -7143440, 0, 0, -6750228, 0, 0, -6357007, 0, 0, -6291455, 3, 0, -6094857, 3, 0, -5767173, 3, 0, -5439491, 5, 0, -5439487, 3, 0, -5111818, 0, 0, -4915206, 0, 0, -4784128, 0, 0, -4587529, 5, 0, -4194311, 3, 0, -3997697, 2, 0, -3801097, 2, 0, -3538948, 2, 0, -3604478, 5, 0, -3342346, 0, 0, -3211263, 2, 0, -3014667, 4, 0, -2949124, 0, 0, -2883595, 1, 0, -2883594, 1, 0, -2883593, 1, 0, -2621439, 0, 0, -2490377, 5, 0, -2228228, 0, 0, -2162684, 2, 0, -1572869, 0, 0, -1245185, 2, 0, -1114110, 0, 0, -1048566, 0, 0, -917509, 0, 0, -589819, 0, 0, -262142, 0, 0, 131071, 0, 0, 327686, 0, 0, 589822, 1, 0, 589823, 1, 0, 524288, 1, 0, 524289, 1, 0, 524290, 1, 0, 524291, 1, 0, 524292, 1, 0, 524293, 1, 0, 524294, 1, 0, 524295, 1, 0, 524296, 1, 0, 524297, 1, 0, 524298, 1, 0, 524299, 1, 0, 524300, 1, 0, 524301, 1, 0 )
 
 [node name="Sprite" type="Sprite" parent="TileMap"]
 position = Vector2( 42.5245, 201.659 )
@@ -78,20 +123,8 @@ position = Vector2( 565.901, 193.761 )
 scale = Vector2( 2.03589, 2.03589 )
 texture = ExtResource( 26 )
 
-[node name="Monstro" parent="." instance=ExtResource( 25 )]
-position = Vector2( 957.01, -271.796 )
-
-[node name="Monstro2" parent="." instance=ExtResource( 25 )]
-position = Vector2( 1135.15, -603.348 )
-
-[node name="Monstro3" parent="." instance=ExtResource( 25 )]
-position = Vector2( 598.939, -1011.47 )
-
-[node name="Monstro4" parent="." instance=ExtResource( 25 )]
-position = Vector2( 1003.66, -1011.47 )
-
 [node name="Portal" type="Area2D" parent="."]
-position = Vector2( 1654.67, -722.618 )
+position = Vector2( -733.632, -3146.88 )
 script = ExtResource( 27 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Portal"]
@@ -99,7 +132,7 @@ position = Vector2( 299.861, 76.2252 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Portal/CollisionShape2D"]
-position = Vector2( 0, -12.0137 )
+position = Vector2( -561.451, -3280.16 )
 scale = Vector2( 0.241529, 0.264542 )
 texture = ExtResource( 28 )
 
@@ -107,114 +140,31 @@ texture = ExtResource( 28 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2( 16, 16 )
+motion_mirroring = Vector2( 1325.41, 488.373 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -365.109, -861.965 )
-scale = Vector2( 5.28105, 3.17542 )
+position = Vector2( -321.297, -16.0951 )
+scale = Vector2( 2.59566, 1.17268 )
 texture = ExtResource( 24 )
 centered = false
-__meta__ = {
-"_edit_lock_": true
-}
-
-[node name="Sprite2" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 2338.79, -861.965 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite3" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -365.109, -2487.46 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite4" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 2338.79, -2487.46 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite5" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -3071.07, -861.649 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite6" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -3071.07, -2487.46 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite7" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -3071.07, 764.166 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite8" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( -365.109, 764.166 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="Sprite9" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
-position = Vector2( 2338.79, 764.166 )
-scale = Vector2( 5.28105, 3.17542 )
-texture = ExtResource( 24 )
-centered = false
-
-[node name="player" type="KinematicBody2D" parent="."]
-position = Vector2( 209.315, 346.324 )
-script = ExtResource( 21 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="AnimatedSprite" type="AnimatedSprite" parent="player"]
-position = Vector2( -3.08298, 33.3681 )
-scale = Vector2( 3.03575, 2.62218 )
-frames = SubResource( 2 )
-animation = "jump"
-playing = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
-position = Vector2( -1.96884, 32.0588 )
-shape = SubResource( 3 )
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2( 1, -1 )
-current = true
-limit_top = -10000
-limit_bottom = 600
-smoothing_enabled = true
-
-[node name="pés" type="Area2D" parent="player"]
-collision_layer = 4
-collision_mask = 4
-
-[node name="shape" type="CollisionShape2D" parent="player/pés"]
-position = Vector2( -2.15604, 76.3916 )
-shape = SubResource( 4 )
 
 [node name="Coins" parent="." instance=ExtResource( 29 )]
-position = Vector2( 332.742, 392.042 )
+position = Vector2( 527.522, -512.936 )
 
 [node name="Coins10" parent="." instance=ExtResource( 29 )]
-position = Vector2( 333.372, 354.244 )
+position = Vector2( -39.0236, -173.168 )
 
 [node name="Coins2" parent="." instance=ExtResource( 29 )]
-position = Vector2( 409.598, 392.042 )
+position = Vector2( -18.0334, -2237.89 )
 
 [node name="Coins8" parent="." instance=ExtResource( 29 )]
-position = Vector2( 407.078, 356.764 )
+position = Vector2( -156.286, -841.882 )
 
 [node name="Coins4" parent="." instance=ExtResource( 29 )]
-position = Vector2( 437.316, 392.042 )
+position = Vector2( -161.368, -1959.93 )
 
 [node name="Coins7" parent="." instance=ExtResource( 29 )]
-position = Vector2( 437.316, 356.764 )
+position = Vector2( 241.318, -1154.2 )
 
 [node name="Coins5" parent="." instance=ExtResource( 29 )]
 position = Vector2( 466.924, 393.932 )
@@ -223,10 +173,10 @@ position = Vector2( 466.924, 393.932 )
 position = Vector2( 465.665, 358.024 )
 
 [node name="Coins3" parent="." instance=ExtResource( 29 )]
-position = Vector2( 370.54, 392.042 )
+position = Vector2( -417.57, -1567.74 )
 
 [node name="Coins9" parent="." instance=ExtResource( 29 )]
-position = Vector2( 369.91, 356.134 )
+position = Vector2( 143.622, -543.674 )
 
 [node name="CoinsCont" type="CanvasLayer" parent="."]
 
@@ -238,5 +188,58 @@ __meta__ = {
 }
 
 [node name="Control" parent="." instance=ExtResource( 30 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/camera = SubResource( 2 )
+
+[node name="player" type="KinematicBody2D" parent="AnimationPlayer"]
+position = Vector2( 205.111, 343.381 )
+script = ExtResource( 21 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="AnimationPlayer/player"]
+position = Vector2( -3.08298, 33.3681 )
+scale = Vector2( 3.03575, 2.62218 )
+frames = SubResource( 3 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer/player"]
+position = Vector2( -1.96884, 32.0588 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="AnimationPlayer/player"]
+position = Vector2( 0, -1 )
+current = true
+limit_top = -10000
+limit_bottom = 600
+smoothing_enabled = true
+
+[node name="pés" type="Area2D" parent="AnimationPlayer/player"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="shape" type="CollisionShape2D" parent="AnimationPlayer/player/pés"]
+position = Vector2( -2.15604, 76.3916 )
+shape = SubResource( 5 )
+
+[node name="Area2D" type="Area2D" parent="AnimationPlayer/player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer/player/Area2D"]
+position = Vector2( 20.5275, 42.6802 )
+shape = SubResource( 6 )
+
+[node name="Area2D2" type="Area2D" parent="AnimationPlayer/player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimationPlayer/player/Area2D2"]
+position = Vector2( -24.9439, 42.364 )
+shape = SubResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 37 )
+autoplay = true
 [connection signal="body_entered" from="Portal" to="Portal" method="_on_Portal_body_entered"]
-[connection signal="body_entered" from="player/pés" to="player" method="_on_ps_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="body_entered" from="AnimationPlayer/player/pés" to="AnimationPlayer/player" method="_on_ps_body_entered"]
+[connection signal="body_entered" from="AnimationPlayer/player/Area2D" to="AnimationPlayer/player" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="AnimationPlayer/player/Area2D" to="AnimationPlayer/player" method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="AnimationPlayer/player/Area2D2" to="AnimationPlayer/player" method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="AnimationPlayer/player/Area2D2" to="AnimationPlayer/player" method="_on_Area2D_body_exited"]

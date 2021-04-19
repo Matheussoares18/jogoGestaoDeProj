@@ -15,9 +15,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="gestaoDeProjetos"
 run/main_scene="res://Node2D.tscn"
-config/icon="res://icon.png"
 
 [autoload]
 
@@ -30,7 +28,8 @@ got_to_shop={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":76,"unicode":0,"echo":false,"script":null)
  ]
 }
-
-[rendering]
-
-environment/default_environment="res://default_env.tres"
+stop_time={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"unicode":0,"echo":false,"script":null)
+ ]
+}
