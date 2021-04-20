@@ -1,0 +1,23 @@
+Godot Engine v3.2.3.stable.official - https://godotengine.org
+OpenGL ES 3.0 Renderer: AMD Radeon (TM) R7 360 Series
+ 
+**ERROR**: Cannot open file 'res://Cena2.tscn'.
+   At: scene/resources/resource_format_text.cpp:1228:load_interactive() - Condition "err != OK" is true. Returned: Ref<ResourceInteractiveLoader>()
+**ERROR**: Failed loading resource: res://Cena2.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   At: core/io/resource_loader.cpp:278:_load() - Condition "found" is true. Returned: RES()
+**ERROR**: Cannot open file 'res://Cena2.tscn'.
+   At: scene/resources/resource_format_text.cpp:1228:load_interactive() - Condition "err != OK" is true. Returned: Ref<ResourceInteractiveLoader>()
+**ERROR**: Failed loading resource: res://Cena2.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   At: core/io/resource_loader.cpp:278:_load() - Condition "found" is true. Returned: RES()
+**ERROR**: Cannot open file 'res://Cena2.tscn'.
+   At: scene/resources/resource_format_text.cpp:1228:load_interactive() - Condition "err != OK" is true. Returned: Ref<ResourceInteractiveLoader>()
+**ERROR**: Failed loading resource: res://Cena2.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   At: core/io/resource_loader.cpp:278:_load() - Condition "found" is true. Returned: RES()
+**ERROR**: Cannot open file 'res://Cena2.tscn'.
+   At: scene/resources/resource_format_text.cpp:1228:load_interactive() - Condition "err != OK" is true. Returned: Ref<ResourceInteractiveLoader>()
+**ERROR**: Failed loading resource: res://Cena2.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   At: core/io/resource_loader.cpp:278:_load() - Condition "found" is true. Returned: RES()
+**ERROR**: Cannot open file 'res://Cena2.tscn'.
+   At: scene/resources/resource_format_text.cpp:1228:load_interactive() - Condition "err != OK" is true. Returned: Ref<ResourceInteractiveLoader>()
+**ERROR**: Failed loading resource: res://Cena2.tscn. Make sure resources have been imported by opening the project in the editor at least once.
+   At: core/io/resource_loader.cpp:278:_load() - Condition "found" is true. Returned: RES()

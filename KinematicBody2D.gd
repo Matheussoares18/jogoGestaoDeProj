@@ -14,7 +14,8 @@ var motion = Vector2()
 
 func _process(delta):
 	
-	print(canJump)
+	get_node("/root/WorldFase1/CoinsCont/Label").text = "Coins: " +str(Global.coins)
+	
 	if !Global.disabledControls:
 		update_att()
 		
@@ -42,21 +43,19 @@ func _process(delta):
 				motion.y = JUMP_HEIGHT
 				
 				
+				
 		elif !is_on_floor() && !grab:
 			$AnimatedSprite.play("jump")
-			if Input.is_action_pressed("ui_up") && canJump:
-				motion.y = JUMP_HEIGHT
-				canJump = false
+			if Input.is_action_pressed("ui_up"):
+				if canJump:
+					motion.y = JUMP_HEIGHT
+					canJump = false
+					
+					
 				
 		
 		
-	if Input.is_action_pressed("stop_time"):
-		if stopTimeActive:
-			GRAVITY = 40
-			stopTimeActive = false
-		else:
-			stopTimeActive = true
-			GRAVITY = 0
+
 		
 	
 		

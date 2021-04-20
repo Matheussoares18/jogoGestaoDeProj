@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/back.jpg" type="Texture" id=1]
+[ext_resource path="res://scripts/Start.gd" type="Script" id=2]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 512.804, 299.43 )
+scale = Vector2( 1.99989, 1.17125 )
+texture = ExtResource( 1 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 51.0794
+margin_top = 460.877
+margin_right = 982.079
+margin_bottom = 492.877
+text = "Jogar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 51.0795
+margin_top = 517.573
+margin_right = 982.079
+margin_bottom = 549.573
+text = "Sair"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="button_down" from="Button" to="." method="_on_Button_button_down"]
